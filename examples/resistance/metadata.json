@@ -1,0 +1,27 @@
+{
+  "experiment_id": "resistance_4wire",
+  "description": "Low-resistance 4-wire measurement and thermal EMF investigation",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "V = R * I + V0",
+  "nominal_parameters": {
+    "resistance_ohm": 0.01
+  },
+  "datasets": {
+    "resistance_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "No fault found",
+      "recommended_next_test": null
+    },
+    "resistance_thermal_offset.csv": {
+      "injected_fault": "thermal_emf_offset_40uV",
+      "expected_diagnosis": "Thermoelectric (thermal EMF) offset at a contact",
+      "recommended_next_test": "current_reversal"
+    },
+    "resistance_nonlinear.csv": {
+      "injected_fault": "nonlinear_contact_heating",
+      "expected_diagnosis": "Nonlinear contact resistance / heating effect",
+      "recommended_next_test": "narrow_current_sweep"
+    }
+  }
+}

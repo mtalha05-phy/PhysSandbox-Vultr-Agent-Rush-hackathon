@@ -1,0 +1,29 @@
+{
+  "experiment_id": "laser_profile",
+  "description": "Laser beam profile and photodetector alignment",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "V(x) = V_dark + V_peak * exp(-2 * ((x - x0) / w)^2)",
+  "nominal_parameters": {
+    "expected_center_mm": 0.0,
+    "expected_peak_mV": 600.0,
+    "waist_mm": 1.0
+  },
+  "datasets": {
+    "optics_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "No fault found",
+      "recommended_next_test": null
+    },
+    "optics_misaligned.csv": {
+      "injected_fault": "transverse_stage_misalignment_0.85mm",
+      "expected_diagnosis": "Photodetector transverse misalignment",
+      "recommended_next_test": "adjust_transverse_stage"
+    },
+    "optics_low_signal.csv": {
+      "injected_fault": "laser_optical_power_attenuation_70pct",
+      "expected_diagnosis": "Reduced laser output or optical window contamination",
+      "recommended_next_test": "measure_laser_optical_power"
+    }
+  }
+}

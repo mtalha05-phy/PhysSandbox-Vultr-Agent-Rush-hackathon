@@ -1,0 +1,29 @@
+{
+  "experiment_id": "helmholtz",
+  "description": "Helmholtz coil magnetic-field calibration",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "B = (4/5)^(3/2) * mu0 * N * I / R = k * I",
+  "nominal_parameters": {
+    "radius_m": 0.15,
+    "turns": 100,
+    "k_theoretical_uT_per_A": 599.45
+  },
+  "datasets": {
+    "magnetic_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "No fault found",
+      "recommended_next_test": null
+    },
+    "magnetic_offset.csv": {
+      "injected_fault": "ambient_earth_field_45uT",
+      "expected_diagnosis": "Ambient Earth magnetic field or nearby ferromagnetic materials",
+      "recommended_next_test": "zero_current_ambient"
+    },
+    "magnetic_gain.csv": {
+      "injected_fault": "sensor_gain_calibration_error_18pct",
+      "expected_diagnosis": "Sensor gain / calibration scaling error",
+      "recommended_next_test": "calibrated_magnetometer_check"
+    }
+  }
+}

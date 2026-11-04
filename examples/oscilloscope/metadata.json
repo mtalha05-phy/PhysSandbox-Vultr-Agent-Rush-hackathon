@@ -1,0 +1,28 @@
+{
+  "experiment_id": "waveform",
+  "description": "Oscilloscope signal analysis and noise detection",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "V(t) = A*sin(2*pi*f0*t) + B*sin(2*pi*fh*t) + n(t)",
+  "nominal_parameters": {
+    "signal_hz": 1000.0,
+    "mains_hz": 50.0
+  },
+  "datasets": {
+    "oscilloscope_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "No fault found",
+      "recommended_next_test": null
+    },
+    "oscilloscope_50hz_noise.csv": {
+      "injected_fault": "mains_50hz_interference",
+      "expected_diagnosis": "Ground loop picking up mains hum",
+      "recommended_next_test": "single_point_ground"
+    },
+    "oscilloscope_harmonic_noise.csv": {
+      "injected_fault": "mains_harmonics_50_100_150hz",
+      "expected_diagnosis": "Ground loop picking up mains hum",
+      "recommended_next_test": "single_point_ground"
+    }
+  }
+}

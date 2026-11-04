@@ -1,0 +1,28 @@
+{
+  "experiment_id": "beer_lambert",
+  "description": "Beer-Lambert law of optical absorption",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "I(x) = I_0 * exp(-alpha * x) + I_background",
+  "nominal_parameters": {
+    "expected_alpha": 0.5,
+    "expected_i0": 1.0
+  },
+  "datasets": {
+    "absorption_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "Normal optical absorption",
+      "recommended_next_test": null
+    },
+    "absorption_high.csv": {
+      "injected_fault": "elevated_absorption_coefficient_1.1cm_inv",
+      "expected_diagnosis": "Higher sample concentration or elevated absorption coefficient",
+      "recommended_next_test": "multi_thickness_sweep"
+    },
+    "absorption_background.csv": {
+      "injected_fault": "stray_ambient_light_leakage_12pct",
+      "expected_diagnosis": "Stray ambient light or photodetector dark current offset",
+      "recommended_next_test": "blocked_source_dark_measurement"
+    }
+  }
+}

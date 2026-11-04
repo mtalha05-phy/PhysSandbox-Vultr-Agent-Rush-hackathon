@@ -1,0 +1,29 @@
+{
+  "experiment_id": "faraday",
+  "description": "Faraday's law of electromagnetic induction",
+  "origin": "synthetic",
+  "random_seed": 42,
+  "theoretical_model": "EMF = -N * d(Phi_B) / dt",
+  "nominal_parameters": {
+    "turns": 200,
+    "frequency_hz": 10.0,
+    "peak_flux_Wb": 0.0001
+  },
+  "datasets": {
+    "faraday_clean.csv": {
+      "injected_fault": null,
+      "expected_diagnosis": "Normal induction",
+      "recommended_next_test": null
+    },
+    "faraday_offset.csv": {
+      "injected_fault": "amplifier_dc_offset_150mV",
+      "expected_diagnosis": "Amplifier or instrumentation DC offset",
+      "recommended_next_test": "static_flux_baseline"
+    },
+    "faraday_reduced_signal.csv": {
+      "injected_fault": "coil_turn_count_half_nominal",
+      "expected_diagnosis": "Coil turn count or area specification mismatch",
+      "recommended_next_test": "verify_coil_geometry"
+    }
+  }
+}
